@@ -52,12 +52,17 @@ type Complex64ReadCloser interface {
 
 // Complex64UnitReader defines an interface for reading a single item of complex64 type.
 type Complex64UnitReader interface {
-	Read() (complex64, error)
+	ReadUnit() (complex64, error)
 }
 
 // Complex64Writer defines an interface for writing a slice of complex64 types.
 type Complex64Writer interface {
 	Write([]complex64) (int, error)
+}
+
+// Complex64UnitWriter defines an interface for writing a single complex64 type.
+type Complex64UnitWriter interface {
+	WriteUnit(complex64) (int, error)
 }
 
 // Complex64WriteCloser defines an interface for writing a slice of complex64 types.

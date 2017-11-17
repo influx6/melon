@@ -52,12 +52,17 @@ type Complex128ReadCloser interface {
 
 // Complex128UnitReader defines an interface for reading a single item of complex128 type.
 type Complex128UnitReader interface {
-	Read() (complex128, error)
+	ReadUnit() (complex128, error)
 }
 
 // Complex128Writer defines an interface for writing a slice of complex128 types.
 type Complex128Writer interface {
 	Write([]complex128) (int, error)
+}
+
+// Complex128UnitWriter defines an interface for writing a single complex128 type.
+type Complex128UnitWriter interface {
+	WriteUnit(complex128) (int, error)
 }
 
 // Complex128WriteCloser defines an interface for writing a slice of complex128 types.

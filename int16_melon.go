@@ -52,12 +52,17 @@ type Int16ReadCloser interface {
 
 // Int16UnitReader defines an interface for reading a single item of int16 type.
 type Int16UnitReader interface {
-	Read() (int16, error)
+	ReadUnit() (int16, error)
 }
 
 // Int16Writer defines an interface for writing a slice of int16 types.
 type Int16Writer interface {
 	Write([]int16) (int, error)
+}
+
+// Int16UnitWriter defines an interface for writing a single int16 type.
+type Int16UnitWriter interface {
+	WriteUnit(int16) (int, error)
 }
 
 // Int16WriteCloser defines an interface for writing a slice of int16 types.

@@ -52,12 +52,17 @@ type UInt64ReadCloser interface {
 
 // UInt64UnitReader defines an interface for reading a single item of uint64 type.
 type UInt64UnitReader interface {
-	Read() (uint64, error)
+	ReadUnit() (uint64, error)
 }
 
 // UInt64Writer defines an interface for writing a slice of uint64 types.
 type UInt64Writer interface {
 	Write([]uint64) (int, error)
+}
+
+// UInt64UnitWriter defines an interface for writing a single uint64 type.
+type UInt64UnitWriter interface {
+	WriteUnit(uint64) (int, error)
 }
 
 // UInt64WriteCloser defines an interface for writing a slice of uint64 types.

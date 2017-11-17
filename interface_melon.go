@@ -52,12 +52,17 @@ type InterfaceReadCloser interface {
 
 // InterfaceUnitReader defines an interface for reading a single item of interface{} type.
 type InterfaceUnitReader interface {
-	Read() (interface{}, error)
+	ReadUnit() (interface{}, error)
 }
 
 // InterfaceWriter defines an interface for writing a slice of interface{} types.
 type InterfaceWriter interface {
 	Write([]interface{}) (int, error)
+}
+
+// InterfaceUnitWriter defines an interface for writing a single interface{} type.
+type InterfaceUnitWriter interface {
+	WriteUnit(interface{}) (int, error)
 }
 
 // InterfaceWriteCloser defines an interface for writing a slice of interface{} types.

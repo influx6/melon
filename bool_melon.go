@@ -52,12 +52,17 @@ type BoolReadCloser interface {
 
 // BoolUnitReader defines an interface for reading a single item of bool type.
 type BoolUnitReader interface {
-	Read() (bool, error)
+	ReadUnit() (bool, error)
 }
 
 // BoolWriter defines an interface for writing a slice of bool types.
 type BoolWriter interface {
 	Write([]bool) (int, error)
+}
+
+// BoolUnitWriter defines an interface for writing a single bool type.
+type BoolUnitWriter interface {
+	WriteUnit(bool) (int, error)
 }
 
 // BoolWriteCloser defines an interface for writing a slice of bool types.

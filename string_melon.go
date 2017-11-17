@@ -52,12 +52,17 @@ type StringReadCloser interface {
 
 // StringUnitReader defines an interface for reading a single item of string type.
 type StringUnitReader interface {
-	Read() (string, error)
+	ReadUnit() (string, error)
 }
 
 // StringWriter defines an interface for writing a slice of string types.
 type StringWriter interface {
 	Write([]string) (int, error)
+}
+
+// StringUnitWriter defines an interface for writing a single string type.
+type StringUnitWriter interface {
+	WriteUnit(string) (int, error)
 }
 
 // StringWriteCloser defines an interface for writing a slice of string types.

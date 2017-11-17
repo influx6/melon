@@ -52,12 +52,17 @@ type Float64ReadCloser interface {
 
 // Float64UnitReader defines an interface for reading a single item of float64 type.
 type Float64UnitReader interface {
-	Read() (float64, error)
+	ReadUnit() (float64, error)
 }
 
 // Float64Writer defines an interface for writing a slice of float64 types.
 type Float64Writer interface {
 	Write([]float64) (int, error)
+}
+
+// Float64UnitWriter defines an interface for writing a single float64 type.
+type Float64UnitWriter interface {
+	WriteUnit(float64) (int, error)
 }
 
 // Float64WriteCloser defines an interface for writing a slice of float64 types.

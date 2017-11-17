@@ -52,12 +52,17 @@ type MapReadCloser interface {
 
 // MapUnitReader defines an interface for reading a single item of map[string]interface{} type.
 type MapUnitReader interface {
-	Read() (map[string]interface{}, error)
+	ReadUnit() (map[string]interface{}, error)
 }
 
 // MapWriter defines an interface for writing a slice of map[string]interface{} types.
 type MapWriter interface {
 	Write([]map[string]interface{}) (int, error)
+}
+
+// MapUnitWriter defines an interface for writing a single map[string]interface{} type.
+type MapUnitWriter interface {
+	WriteUnit(map[string]interface{}) (int, error)
 }
 
 // MapWriteCloser defines an interface for writing a slice of map[string]interface{} types.

@@ -52,12 +52,17 @@ type MapOfStringReadCloser interface {
 
 // MapOfStringUnitReader defines an interface for reading a single item of map[string]string type.
 type MapOfStringUnitReader interface {
-	Read() (map[string]string, error)
+	ReadUnit() (map[string]string, error)
 }
 
 // MapOfStringWriter defines an interface for writing a slice of map[string]string types.
 type MapOfStringWriter interface {
 	Write([]map[string]string) (int, error)
+}
+
+// MapOfStringUnitWriter defines an interface for writing a single map[string]string type.
+type MapOfStringUnitWriter interface {
+	WriteUnit(map[string]string) (int, error)
 }
 
 // MapOfStringWriteCloser defines an interface for writing a slice of map[string]string types.

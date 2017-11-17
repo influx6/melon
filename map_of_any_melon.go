@@ -52,12 +52,17 @@ type MapOfAnyReadCloser interface {
 
 // MapOfAnyUnitReader defines an interface for reading a single item of map[interface{}]interface{} type.
 type MapOfAnyUnitReader interface {
-	Read() (map[interface{}]interface{}, error)
+	ReadUnit() (map[interface{}]interface{}, error)
 }
 
 // MapOfAnyWriter defines an interface for writing a slice of map[interface{}]interface{} types.
 type MapOfAnyWriter interface {
 	Write([]map[interface{}]interface{}) (int, error)
+}
+
+// MapOfAnyUnitWriter defines an interface for writing a single map[interface{}]interface{} type.
+type MapOfAnyUnitWriter interface {
+	WriteUnit(map[interface{}]interface{}) (int, error)
 }
 
 // MapOfAnyWriteCloser defines an interface for writing a slice of map[interface{}]interface{} types.

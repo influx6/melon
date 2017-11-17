@@ -50,12 +50,17 @@ type {{sel "Name"}}ReadCloser interface {
 
 // {{sel "Name"}}UnitReader defines an interface for reading a single item of {{sel "Type"}} type.
 type {{sel "Name"}}UnitReader interface {
-  Read() ({{sel "Type"}}, error)
+  ReadUnit() ({{sel "Type"}}, error)
 }
 
 // {{sel "Name"}}Writer defines an interface for writing a slice of {{sel "Type"}} types.
 type {{sel "Name"}}Writer interface {
   Write([]{{sel "Type"}}) (int, error)
+}
+
+// {{sel "Name"}}UnitWriter defines an interface for writing a single {{sel "Type"}} type.
+type {{sel "Name"}}UnitWriter interface {
+  WriteUnit({{sel "Type"}}) (int, error)
 }
 
 // {{sel "Name"}}WriteCloser defines an interface for writing a slice of {{sel "Type"}} types.

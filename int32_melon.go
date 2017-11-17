@@ -52,12 +52,17 @@ type Int32ReadCloser interface {
 
 // Int32UnitReader defines an interface for reading a single item of int32 type.
 type Int32UnitReader interface {
-	Read() (int32, error)
+	ReadUnit() (int32, error)
 }
 
 // Int32Writer defines an interface for writing a slice of int32 types.
 type Int32Writer interface {
 	Write([]int32) (int, error)
+}
+
+// Int32UnitWriter defines an interface for writing a single int32 type.
+type Int32UnitWriter interface {
+	WriteUnit(int32) (int, error)
 }
 
 // Int32WriteCloser defines an interface for writing a slice of int32 types.

@@ -52,12 +52,17 @@ type UInt8ReadCloser interface {
 
 // UInt8UnitReader defines an interface for reading a single item of uint8 type.
 type UInt8UnitReader interface {
-	Read() (uint8, error)
+	ReadUnit() (uint8, error)
 }
 
 // UInt8Writer defines an interface for writing a slice of uint8 types.
 type UInt8Writer interface {
 	Write([]uint8) (int, error)
+}
+
+// UInt8UnitWriter defines an interface for writing a single uint8 type.
+type UInt8UnitWriter interface {
+	WriteUnit(uint8) (int, error)
 }
 
 // UInt8WriteCloser defines an interface for writing a slice of uint8 types.

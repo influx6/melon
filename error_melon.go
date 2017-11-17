@@ -52,12 +52,17 @@ type ErrorReadCloser interface {
 
 // ErrorUnitReader defines an interface for reading a single item of error type.
 type ErrorUnitReader interface {
-	Read() (error, error)
+	ReadUnit() (error, error)
 }
 
 // ErrorWriter defines an interface for writing a slice of error types.
 type ErrorWriter interface {
 	Write([]error) (int, error)
+}
+
+// ErrorUnitWriter defines an interface for writing a single error type.
+type ErrorUnitWriter interface {
+	WriteUnit(error) (int, error)
 }
 
 // ErrorWriteCloser defines an interface for writing a slice of error types.

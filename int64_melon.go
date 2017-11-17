@@ -52,12 +52,17 @@ type Int64ReadCloser interface {
 
 // Int64UnitReader defines an interface for reading a single item of int64 type.
 type Int64UnitReader interface {
-	Read() (int64, error)
+	ReadUnit() (int64, error)
 }
 
 // Int64Writer defines an interface for writing a slice of int64 types.
 type Int64Writer interface {
 	Write([]int64) (int, error)
+}
+
+// Int64UnitWriter defines an interface for writing a single int64 type.
+type Int64UnitWriter interface {
+	WriteUnit(int64) (int, error)
 }
 
 // Int64WriteCloser defines an interface for writing a slice of int64 types.

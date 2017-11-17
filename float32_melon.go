@@ -52,12 +52,17 @@ type Float32ReadCloser interface {
 
 // Float32UnitReader defines an interface for reading a single item of float32 type.
 type Float32UnitReader interface {
-	Read() (float32, error)
+	ReadUnit() (float32, error)
 }
 
 // Float32Writer defines an interface for writing a slice of float32 types.
 type Float32Writer interface {
 	Write([]float32) (int, error)
+}
+
+// Float32UnitWriter defines an interface for writing a single float32 type.
+type Float32UnitWriter interface {
+	WriteUnit(float32) (int, error)
 }
 
 // Float32WriteCloser defines an interface for writing a slice of float32 types.

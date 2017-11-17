@@ -52,12 +52,17 @@ type UIntReadCloser interface {
 
 // UIntUnitReader defines an interface for reading a single item of uint type.
 type UIntUnitReader interface {
-	Read() (uint, error)
+	ReadUnit() (uint, error)
 }
 
 // UIntWriter defines an interface for writing a slice of uint types.
 type UIntWriter interface {
 	Write([]uint) (int, error)
+}
+
+// UIntUnitWriter defines an interface for writing a single uint type.
+type UIntUnitWriter interface {
+	WriteUnit(uint) (int, error)
 }
 
 // UIntWriteCloser defines an interface for writing a slice of uint types.

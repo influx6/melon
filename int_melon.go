@@ -52,12 +52,17 @@ type IntReadCloser interface {
 
 // IntUnitReader defines an interface for reading a single item of int type.
 type IntUnitReader interface {
-	Read() (int, error)
+	ReadUnit() (int, error)
 }
 
 // IntWriter defines an interface for writing a slice of int types.
 type IntWriter interface {
 	Write([]int) (int, error)
+}
+
+// IntUnitWriter defines an interface for writing a single int type.
+type IntUnitWriter interface {
+	WriteUnit(int) (int, error)
 }
 
 // IntWriteCloser defines an interface for writing a slice of int types.

@@ -52,12 +52,17 @@ type ByteReadCloser interface {
 
 // ByteUnitReader defines an interface for reading a single item of byte type.
 type ByteUnitReader interface {
-	Read() (byte, error)
+	ReadUnit() (byte, error)
 }
 
 // ByteWriter defines an interface for writing a slice of byte types.
 type ByteWriter interface {
 	Write([]byte) (int, error)
+}
+
+// ByteUnitWriter defines an interface for writing a single byte type.
+type ByteUnitWriter interface {
+	WriteUnit(byte) (int, error)
 }
 
 // ByteWriteCloser defines an interface for writing a slice of byte types.
