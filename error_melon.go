@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// ErrorUnitReaderFunc defines a function which expects the giving ErrorReader type has input.
+type ErrorUnitReaderFunc func(ErrorReader) ErrorUnitReader
+
+// ErrorUnitReaderFuncWithContext defines a function which expects the giving ErrorReader type has input.
+// This expects to receive a context.Context type.
+type ErrorUnitReaderFuncWithContext func(context.Context, ErrorReader) ErrorUnitReader
+
 // ErrorReaderFunc defines a function which expects the giving ErrorReader type has input.
 type ErrorReaderFunc func(ErrorReader) error
 
@@ -41,6 +48,11 @@ type ErrorReader interface {
 type ErrorReadCloser interface {
 	Closer
 	ErrorReader
+}
+
+// ErrorUnitReader defines an interface for reading a single item of error type.
+type ErrorUnitReader interface {
+	Read() (error, error)
 }
 
 // ErrorWriter defines an interface for writing a slice of error types.

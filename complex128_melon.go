@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Complex128UnitReaderFunc defines a function which expects the giving Complex128Reader type has input.
+type Complex128UnitReaderFunc func(Complex128Reader) Complex128UnitReader
+
+// Complex128UnitReaderFuncWithContext defines a function which expects the giving Complex128Reader type has input.
+// This expects to receive a context.Context type.
+type Complex128UnitReaderFuncWithContext func(context.Context, Complex128Reader) Complex128UnitReader
+
 // Complex128ReaderFunc defines a function which expects the giving Complex128Reader type has input.
 type Complex128ReaderFunc func(Complex128Reader) error
 
@@ -41,6 +48,11 @@ type Complex128Reader interface {
 type Complex128ReadCloser interface {
 	Closer
 	Complex128Reader
+}
+
+// Complex128UnitReader defines an interface for reading a single item of complex128 type.
+type Complex128UnitReader interface {
+	Read() (complex128, error)
 }
 
 // Complex128Writer defines an interface for writing a slice of complex128 types.

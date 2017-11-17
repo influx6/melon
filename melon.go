@@ -1,11 +1,12 @@
 package melon
 
-// Closer defines a inteface which exposes a single Close method.
-type Closer interface {
-	Close() error
-}
-
-// Seeker defines a interface which exposes a single Seek method.
+// Seeker defines a interface which exposes a Seek method to move
+// a reader forward.
 type Seeker interface {
 	Seek(int) error
+}
+
+// Closer defines an interface which exposes a Close method
+type Closer interface {
+	Close() error
 }

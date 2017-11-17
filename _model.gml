@@ -2,6 +2,13 @@ import (
   "github.com/influx6/faux/context"
 )
 
+// {{sel "Name"}}UnitReaderFunc defines a function which expects the giving {{sel "Name"}}Reader type has input.
+type {{sel "Name"}}UnitReaderFunc func({{sel "Name"}}Reader) {{sel "Name"}}UnitReader
+
+// {{sel "Name"}}UnitReaderFuncWithContext defines a function which expects the giving {{sel "Name"}}Reader type has input.
+// This expects to receive a context.Context type.
+type {{sel "Name"}}UnitReaderFuncWithContext func(context.Context, {{sel "Name"}}Reader) {{sel "Name"}}UnitReader
+
 // {{sel "Name"}}ReaderFunc defines a function which expects the giving {{sel "Name"}}Reader type has input.
 type {{sel "Name"}}ReaderFunc func({{sel "Name"}}Reader) error
 
@@ -39,6 +46,11 @@ type {{sel "Name"}}Reader interface {
 type {{sel "Name"}}ReadCloser interface {
   Closer
   {{sel "Name"}}Reader
+}
+
+// {{sel "Name"}}UnitReader defines an interface for reading a single item of {{sel "Type"}} type.
+type {{sel "Name"}}UnitReader interface {
+  Read() ({{sel "Type"}}, error)
 }
 
 // {{sel "Name"}}Writer defines an interface for writing a slice of {{sel "Type"}} types.

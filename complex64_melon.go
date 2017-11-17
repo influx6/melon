@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Complex64UnitReaderFunc defines a function which expects the giving Complex64Reader type has input.
+type Complex64UnitReaderFunc func(Complex64Reader) Complex64UnitReader
+
+// Complex64UnitReaderFuncWithContext defines a function which expects the giving Complex64Reader type has input.
+// This expects to receive a context.Context type.
+type Complex64UnitReaderFuncWithContext func(context.Context, Complex64Reader) Complex64UnitReader
+
 // Complex64ReaderFunc defines a function which expects the giving Complex64Reader type has input.
 type Complex64ReaderFunc func(Complex64Reader) error
 
@@ -41,6 +48,11 @@ type Complex64Reader interface {
 type Complex64ReadCloser interface {
 	Closer
 	Complex64Reader
+}
+
+// Complex64UnitReader defines an interface for reading a single item of complex64 type.
+type Complex64UnitReader interface {
+	Read() (complex64, error)
 }
 
 // Complex64Writer defines an interface for writing a slice of complex64 types.

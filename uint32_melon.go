@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// UInt32UnitReaderFunc defines a function which expects the giving UInt32Reader type has input.
+type UInt32UnitReaderFunc func(UInt32Reader) UInt32UnitReader
+
+// UInt32UnitReaderFuncWithContext defines a function which expects the giving UInt32Reader type has input.
+// This expects to receive a context.Context type.
+type UInt32UnitReaderFuncWithContext func(context.Context, UInt32Reader) UInt32UnitReader
+
 // UInt32ReaderFunc defines a function which expects the giving UInt32Reader type has input.
 type UInt32ReaderFunc func(UInt32Reader) error
 
@@ -41,6 +48,11 @@ type UInt32Reader interface {
 type UInt32ReadCloser interface {
 	Closer
 	UInt32Reader
+}
+
+// UInt32UnitReader defines an interface for reading a single item of uint32 type.
+type UInt32UnitReader interface {
+	Read() (uint32, error)
 }
 
 // UInt32Writer defines an interface for writing a slice of uint32 types.

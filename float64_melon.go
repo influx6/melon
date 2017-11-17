@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Float64UnitReaderFunc defines a function which expects the giving Float64Reader type has input.
+type Float64UnitReaderFunc func(Float64Reader) Float64UnitReader
+
+// Float64UnitReaderFuncWithContext defines a function which expects the giving Float64Reader type has input.
+// This expects to receive a context.Context type.
+type Float64UnitReaderFuncWithContext func(context.Context, Float64Reader) Float64UnitReader
+
 // Float64ReaderFunc defines a function which expects the giving Float64Reader type has input.
 type Float64ReaderFunc func(Float64Reader) error
 
@@ -41,6 +48,11 @@ type Float64Reader interface {
 type Float64ReadCloser interface {
 	Closer
 	Float64Reader
+}
+
+// Float64UnitReader defines an interface for reading a single item of float64 type.
+type Float64UnitReader interface {
+	Read() (float64, error)
 }
 
 // Float64Writer defines an interface for writing a slice of float64 types.

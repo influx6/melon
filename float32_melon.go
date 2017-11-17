@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Float32UnitReaderFunc defines a function which expects the giving Float32Reader type has input.
+type Float32UnitReaderFunc func(Float32Reader) Float32UnitReader
+
+// Float32UnitReaderFuncWithContext defines a function which expects the giving Float32Reader type has input.
+// This expects to receive a context.Context type.
+type Float32UnitReaderFuncWithContext func(context.Context, Float32Reader) Float32UnitReader
+
 // Float32ReaderFunc defines a function which expects the giving Float32Reader type has input.
 type Float32ReaderFunc func(Float32Reader) error
 
@@ -41,6 +48,11 @@ type Float32Reader interface {
 type Float32ReadCloser interface {
 	Closer
 	Float32Reader
+}
+
+// Float32UnitReader defines an interface for reading a single item of float32 type.
+type Float32UnitReader interface {
+	Read() (float32, error)
 }
 
 // Float32Writer defines an interface for writing a slice of float32 types.

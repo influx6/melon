@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// BoolUnitReaderFunc defines a function which expects the giving BoolReader type has input.
+type BoolUnitReaderFunc func(BoolReader) BoolUnitReader
+
+// BoolUnitReaderFuncWithContext defines a function which expects the giving BoolReader type has input.
+// This expects to receive a context.Context type.
+type BoolUnitReaderFuncWithContext func(context.Context, BoolReader) BoolUnitReader
+
 // BoolReaderFunc defines a function which expects the giving BoolReader type has input.
 type BoolReaderFunc func(BoolReader) error
 
@@ -41,6 +48,11 @@ type BoolReader interface {
 type BoolReadCloser interface {
 	Closer
 	BoolReader
+}
+
+// BoolUnitReader defines an interface for reading a single item of bool type.
+type BoolUnitReader interface {
+	Read() (bool, error)
 }
 
 // BoolWriter defines an interface for writing a slice of bool types.

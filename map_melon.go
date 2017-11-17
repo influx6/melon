@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// MapUnitReaderFunc defines a function which expects the giving MapReader type has input.
+type MapUnitReaderFunc func(MapReader) MapUnitReader
+
+// MapUnitReaderFuncWithContext defines a function which expects the giving MapReader type has input.
+// This expects to receive a context.Context type.
+type MapUnitReaderFuncWithContext func(context.Context, MapReader) MapUnitReader
+
 // MapReaderFunc defines a function which expects the giving MapReader type has input.
 type MapReaderFunc func(MapReader) error
 
@@ -41,6 +48,11 @@ type MapReader interface {
 type MapReadCloser interface {
 	Closer
 	MapReader
+}
+
+// MapUnitReader defines an interface for reading a single item of map[string]string type.
+type MapUnitReader interface {
+	Read() (map[string]string, error)
 }
 
 // MapWriter defines an interface for writing a slice of map[string]string types.

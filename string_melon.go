@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// StringUnitReaderFunc defines a function which expects the giving StringReader type has input.
+type StringUnitReaderFunc func(StringReader) StringUnitReader
+
+// StringUnitReaderFuncWithContext defines a function which expects the giving StringReader type has input.
+// This expects to receive a context.Context type.
+type StringUnitReaderFuncWithContext func(context.Context, StringReader) StringUnitReader
+
 // StringReaderFunc defines a function which expects the giving StringReader type has input.
 type StringReaderFunc func(StringReader) error
 
@@ -41,6 +48,11 @@ type StringReader interface {
 type StringReadCloser interface {
 	Closer
 	StringReader
+}
+
+// StringUnitReader defines an interface for reading a single item of string type.
+type StringUnitReader interface {
+	Read() (string, error)
 }
 
 // StringWriter defines an interface for writing a slice of string types.

@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// MapOfAnyUnitReaderFunc defines a function which expects the giving MapOfAnyReader type has input.
+type MapOfAnyUnitReaderFunc func(MapOfAnyReader) MapOfAnyUnitReader
+
+// MapOfAnyUnitReaderFuncWithContext defines a function which expects the giving MapOfAnyReader type has input.
+// This expects to receive a context.Context type.
+type MapOfAnyUnitReaderFuncWithContext func(context.Context, MapOfAnyReader) MapOfAnyUnitReader
+
 // MapOfAnyReaderFunc defines a function which expects the giving MapOfAnyReader type has input.
 type MapOfAnyReaderFunc func(MapOfAnyReader) error
 
@@ -41,6 +48,11 @@ type MapOfAnyReader interface {
 type MapOfAnyReadCloser interface {
 	Closer
 	MapOfAnyReader
+}
+
+// MapOfAnyUnitReader defines an interface for reading a single item of map[interface{}]interface{} type.
+type MapOfAnyUnitReader interface {
+	Read() (map[interface{}]interface{}, error)
 }
 
 // MapOfAnyWriter defines an interface for writing a slice of map[interface{}]interface{} types.

@@ -4,6 +4,13 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// ByteUnitReaderFunc defines a function which expects the giving ByteReader type has input.
+type ByteUnitReaderFunc func(ByteReader) ByteUnitReader
+
+// ByteUnitReaderFuncWithContext defines a function which expects the giving ByteReader type has input.
+// This expects to receive a context.Context type.
+type ByteUnitReaderFuncWithContext func(context.Context, ByteReader) ByteUnitReader
+
 // ByteReaderFunc defines a function which expects the giving ByteReader type has input.
 type ByteReaderFunc func(ByteReader) error
 
@@ -41,6 +48,11 @@ type ByteReader interface {
 type ByteReadCloser interface {
 	Closer
 	ByteReader
+}
+
+// ByteUnitReader defines an interface for reading a single item of byte type.
+type ByteUnitReader interface {
+	Read() (byte, error)
 }
 
 // ByteWriter defines an interface for writing a slice of byte types.
