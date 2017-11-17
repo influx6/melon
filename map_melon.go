@@ -39,28 +39,28 @@ type MapWriterFuncWithContext func(context.Context, MapWriter) error
 // This expects to receive a context.Context type.
 type MapWriteCloserFuncWithContext func(context.Context, MapWriteCloser) error
 
-// MapReader defines an interface for reading a slice of map[string]string types.
+// MapReader defines an interface for reading a slice of map[string]interface{} types.
 type MapReader interface {
-	Read([]map[string]string) (int, error)
+	Read([]map[string]interface{}) (int, error)
 }
 
-// MapReadCloser defines an interface for reading a slice of map[string]string types.
+// MapReadCloser defines an interface for reading a slice of map[string]interface{} types.
 type MapReadCloser interface {
 	Closer
 	MapReader
 }
 
-// MapUnitReader defines an interface for reading a single item of map[string]string type.
+// MapUnitReader defines an interface for reading a single item of map[string]interface{} type.
 type MapUnitReader interface {
-	Read() (map[string]string, error)
+	Read() (map[string]interface{}, error)
 }
 
-// MapWriter defines an interface for writing a slice of map[string]string types.
+// MapWriter defines an interface for writing a slice of map[string]interface{} types.
 type MapWriter interface {
-	Write([]map[string]string) (int, error)
+	Write([]map[string]interface{}) (int, error)
 }
 
-// MapWriteCloser defines an interface for writing a slice of map[string]string types.
+// MapWriteCloser defines an interface for writing a slice of map[string]interface{} types.
 type MapWriteCloser interface {
 	Closer
 	MapWriter

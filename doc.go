@@ -18,11 +18,11 @@
 // @templaterTypesFor(id => Model, filename => string_melon.go, Name => String, Type => string)
 // @templaterTypesFor(id => Model, filename => float64_melon.go, Name => Float64, Type => float64)
 // @templaterTypesFor(id => Model, filename => float32_melon.go, Name => Float32, Type => float32)
-// @templaterTypesFor(id => Model, filename => map_melon.go, Name => Map, Type => map[string]string)
+// @templaterTypesFor(id => Model, filename => map_melon.go, Name => Map, Type => map[string]interface{})
 // @templaterTypesFor(id => Model, filename => complex64_melon.go, Name => Complex64, Type => complex64)
 // @templaterTypesFor(id => Model, filename => interface_melon.go, Name => Interface, Type => interface{})
 // @templaterTypesFor(id => Model, filename => complex128_melon.go, Name => Complex128, Type => complex128)
-// @templaterTypesFor(id => Model, filename => map_of_string_melon.go, Name => MapOfString, Type => map[string]interface{})
+// @templaterTypesFor(id => Model, filename => map_of_string_melon.go, Name => MapOfString, Type => map[string]string)
 // @templaterTypesFor(id => Model, filename => map_of_any_melon.go, Name => MapOfAny, Type => map[interface{}]interface{})
 //
 package melon

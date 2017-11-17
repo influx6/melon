@@ -39,28 +39,28 @@ type MapOfStringWriterFuncWithContext func(context.Context, MapOfStringWriter) e
 // This expects to receive a context.Context type.
 type MapOfStringWriteCloserFuncWithContext func(context.Context, MapOfStringWriteCloser) error
 
-// MapOfStringReader defines an interface for reading a slice of map[string]interface{} types.
+// MapOfStringReader defines an interface for reading a slice of map[string]string types.
 type MapOfStringReader interface {
-	Read([]map[string]interface{}) (int, error)
+	Read([]map[string]string) (int, error)
 }
 
-// MapOfStringReadCloser defines an interface for reading a slice of map[string]interface{} types.
+// MapOfStringReadCloser defines an interface for reading a slice of map[string]string types.
 type MapOfStringReadCloser interface {
 	Closer
 	MapOfStringReader
 }
 
-// MapOfStringUnitReader defines an interface for reading a single item of map[string]interface{} type.
+// MapOfStringUnitReader defines an interface for reading a single item of map[string]string type.
 type MapOfStringUnitReader interface {
-	Read() (map[string]interface{}, error)
+	Read() (map[string]string, error)
 }
 
-// MapOfStringWriter defines an interface for writing a slice of map[string]interface{} types.
+// MapOfStringWriter defines an interface for writing a slice of map[string]string types.
 type MapOfStringWriter interface {
-	Write([]map[string]interface{}) (int, error)
+	Write([]map[string]string) (int, error)
 }
 
-// MapOfStringWriteCloser defines an interface for writing a slice of map[string]interface{} types.
+// MapOfStringWriteCloser defines an interface for writing a slice of map[string]string types.
 type MapOfStringWriteCloser interface {
 	Closer
 	MapOfStringWriter
