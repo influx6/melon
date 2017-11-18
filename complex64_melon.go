@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Complex64UniqueHash defines a unique hash for Complex64 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Complex64UniqueHash = "161e6337d01e5b8bd4e79ac4060fde11263b2d17"
+
 // Complex64UnitReaderFunc defines a function which expects the giving Complex64Reader type has input.
 type Complex64UnitReaderFunc func(Complex64Reader) Complex64UnitReader
 

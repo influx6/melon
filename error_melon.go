@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// ErrorUniqueHash defines a unique hash for Error which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const ErrorUniqueHash = "d3e8aa638ed54763fe05bd5404e80abdfc12b4f5"
+
 // ErrorUnitReaderFunc defines a function which expects the giving ErrorReader type has input.
 type ErrorUnitReaderFunc func(ErrorReader) ErrorUnitReader
 

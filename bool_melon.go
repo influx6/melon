@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// BoolUniqueHash defines a unique hash for Bool which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const BoolUniqueHash = "189fa523325f8a701fd00ad1b0cd386b4b629299"
+
 // BoolUnitReaderFunc defines a function which expects the giving BoolReader type has input.
 type BoolUnitReaderFunc func(BoolReader) BoolUnitReader
 

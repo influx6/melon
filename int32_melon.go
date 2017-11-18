@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Int32UniqueHash defines a unique hash for Int32 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Int32UniqueHash = "f90a5efe8610965bee01abba15d0e1f54046e2e8"
+
 // Int32UnitReaderFunc defines a function which expects the giving Int32Reader type has input.
 type Int32UnitReaderFunc func(Int32Reader) Int32UnitReader
 

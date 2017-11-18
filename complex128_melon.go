@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Complex128UniqueHash defines a unique hash for Complex128 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Complex128UniqueHash = "1e22bb114616c1ea2c888d34d5d519a35cc9103c"
+
 // Complex128UnitReaderFunc defines a function which expects the giving Complex128Reader type has input.
 type Complex128UnitReaderFunc func(Complex128Reader) Complex128UnitReader
 

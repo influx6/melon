@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Float32UniqueHash defines a unique hash for Float32 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Float32UniqueHash = "c7cd93eba0df834db18da1b14dc29a7551a1dd80"
+
 // Float32UnitReaderFunc defines a function which expects the giving Float32Reader type has input.
 type Float32UnitReaderFunc func(Float32Reader) Float32UnitReader
 

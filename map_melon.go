@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// MapUniqueHash defines a unique hash for Map which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const MapUniqueHash = "ba70ac0926874b71d829907f558c032da235489c"
+
 // MapUnitReaderFunc defines a function which expects the giving MapReader type has input.
 type MapUnitReaderFunc func(MapReader) MapUnitReader
 

@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// UInt32UniqueHash defines a unique hash for UInt32 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const UInt32UniqueHash = "a334cf504c1433f88e8aaab77d2225c3f7843634"
+
 // UInt32UnitReaderFunc defines a function which expects the giving UInt32Reader type has input.
 type UInt32UnitReaderFunc func(UInt32Reader) UInt32UnitReader
 

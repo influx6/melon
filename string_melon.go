@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// StringUniqueHash defines a unique hash for String which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const StringUniqueHash = "62a027764a58e833c7beb34a33ccb1584d611d17"
+
 // StringUnitReaderFunc defines a function which expects the giving StringReader type has input.
 type StringUnitReaderFunc func(StringReader) StringUnitReader
 

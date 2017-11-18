@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Int8UniqueHash defines a unique hash for Int8 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Int8UniqueHash = "da945acc637aec1ea9d814cc20b2ed6e794ef8b1"
+
 // Int8UnitReaderFunc defines a function which expects the giving Int8Reader type has input.
 type Int8UnitReaderFunc func(Int8Reader) Int8UnitReader
 

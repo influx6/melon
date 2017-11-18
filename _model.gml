@@ -2,6 +2,11 @@ import (
   "github.com/influx6/faux/context"
 )
 
+// {{sel "Name" | capitalize}}UniqueHash defines a unique hash for {{sel "Name"}} which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const {{sel "Name" | capitalize}}UniqueHash = {{ (joinVariadic ":" (sel "Name") (sel "Type")) | sha1 | quote }}
+
 // {{sel "Name"}}UnitReaderFunc defines a function which expects the giving {{sel "Name"}}Reader type has input.
 type {{sel "Name"}}UnitReaderFunc func({{sel "Name"}}Reader) {{sel "Name"}}UnitReader
 

@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// UInt8UniqueHash defines a unique hash for UInt8 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const UInt8UniqueHash = "e5de7d77d24ebbe134934f7c5f8dc3fafb344aba"
+
 // UInt8UnitReaderFunc defines a function which expects the giving UInt8Reader type has input.
 type UInt8UnitReaderFunc func(UInt8Reader) UInt8UnitReader
 

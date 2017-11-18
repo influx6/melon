@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Int64UniqueHash defines a unique hash for Int64 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Int64UniqueHash = "d9735f419182b6c737eba2e4b2d3f05a5b349bc9"
+
 // Int64UnitReaderFunc defines a function which expects the giving Int64Reader type has input.
 type Int64UnitReaderFunc func(Int64Reader) Int64UnitReader
 

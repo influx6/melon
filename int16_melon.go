@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// Int16UniqueHash defines a unique hash for Int16 which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const Int16UniqueHash = "3b1227b09fd0719b0d9a553739bfa14479fc0a09"
+
 // Int16UnitReaderFunc defines a function which expects the giving Int16Reader type has input.
 type Int16UnitReaderFunc func(Int16Reader) Int16UnitReader
 

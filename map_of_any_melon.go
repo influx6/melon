@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// MapOfAnyUniqueHash defines a unique hash for MapOfAny which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const MapOfAnyUniqueHash = "c2d03452b8860af6906e2c8a6e847f371db07988"
+
 // MapOfAnyUnitReaderFunc defines a function which expects the giving MapOfAnyReader type has input.
 type MapOfAnyUnitReaderFunc func(MapOfAnyReader) MapOfAnyUnitReader
 

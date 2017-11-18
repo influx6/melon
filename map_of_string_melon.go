@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// MapOfStringUniqueHash defines a unique hash for MapOfString which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const MapOfStringUniqueHash = "de4cf6eba7a008b25c4561bf3c1885a2c02fc96f"
+
 // MapOfStringUnitReaderFunc defines a function which expects the giving MapOfStringReader type has input.
 type MapOfStringUnitReaderFunc func(MapOfStringReader) MapOfStringUnitReader
 

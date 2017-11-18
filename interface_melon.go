@@ -4,6 +4,11 @@ import (
 	"github.com/influx6/faux/context"
 )
 
+// InterfaceUniqueHash defines a unique hash for Interface which can
+// be used to reference a given instance within a context.ValueBag or a google context.Context
+// value store.
+const InterfaceUniqueHash = "4b3ea5d9542287d43b2938e455ad877a8cc1b573"
+
 // InterfaceUnitReaderFunc defines a function which expects the giving InterfaceReader type has input.
 type InterfaceUnitReaderFunc func(InterfaceReader) InterfaceUnitReader
 
