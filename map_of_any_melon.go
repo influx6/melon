@@ -1,76 +1,37 @@
 package melon
 
-import (
-	"github.com/influx6/faux/context"
-)
-
 // MapOfAnyUniqueHash defines a unique hash for MapOfAny which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const MapOfAnyUniqueHash = "c2d03452b8860af6906e2c8a6e847f371db07988"
 
-// MapOfAnyUnitReaderFunc defines a function which expects the giving MapOfAnyReader type has input.
-type MapOfAnyUnitReaderFunc func(MapOfAnyReader) MapOfAnyUnitReader
-
-// MapOfAnyUnitReaderFuncWithContext defines a function which expects the giving MapOfAnyReader type has input.
-// This expects to receive a context.Context type.
-type MapOfAnyUnitReaderFuncWithContext func(context.Context, MapOfAnyReader) MapOfAnyUnitReader
-
-// MapOfAnyReaderFunc defines a function which expects the giving MapOfAnyReader type has input.
-type MapOfAnyReaderFunc func(MapOfAnyReader) error
-
-// MapOfAnyReaderFuncWithContext defines a function which expects the giving MapOfAnyReader type has input.
-// This expects to receive a context.Context type.
-type MapOfAnyReaderFuncWithContext func(context.Context, MapOfAnyReader) error
-
-// MapOfAnyReadCloserFunc defines a function which expects the giving MapOfAnyReadCloser type has input.
-type MapOfAnyReadCloserFunc func(MapOfAnyReadCloser) error
-
-// MapOfAnyReadCloserFuncWithContext defines a function which expects the giving MapOfAnyReadCloser type has input.
-// This expects to receive a context.Context type.
-type MapOfAnyReadCloserFuncWithContext func(context.Context, MapOfAnyReadCloser) error
-
-// MapOfAnyWriterFunc defines a function which expects the giving MapOfAnyWriter type has input.
-type MapOfAnyWriterFunc func(MapOfAnyWriter) error
-
-// MapOfAnyWriteCloserFunc defines a function which expects the giving MapOfAnyWriteCloser type has input.
-type MapOfAnyWriteCloserFunc func(MapOfAnyWriteCloser) error
-
-// MapOfAnyWriterFuncWithContext defines a function which expects the giving MapOfAnyWriter type has input.
-// This expects to receive a context.Context type.
-type MapOfAnyWriterFuncWithContext func(context.Context, MapOfAnyWriter) error
-
-// MapOfAnyWriteCloserFuncWithContext defines a function which expects the giving MapOfAnyWriteCloser type has input.
-// This expects to receive a context.Context type.
-type MapOfAnyWriteCloserFuncWithContext func(context.Context, MapOfAnyWriteCloser) error
-
-// MapOfAnyReader defines an interface for reading a slice of map[interface{}]interface{} types.
+// MapOfAnyReader defines an interface for reading a single map[interface{}]interface{} type.
 type MapOfAnyReader interface {
-	Read([]map[interface{}]interface{}) (int, error)
+	Read() (map[interface{}]interface{}, error)
 }
 
-// MapOfAnyReadCloser defines an interface for reading a slice of map[interface{}]interface{} types.
+// MapOfAnyLimitReader defines an interface for reading a slice of map[interface{}]interface{} type.
+type MapOfAnyLimitReader interface {
+	ReadLimit(int) ([]map[interface{}]interface{}, error)
+}
+
+// MapOfAnyReadCloser defines an interface for reading a single map[interface{}]interface{} type.
 type MapOfAnyReadCloser interface {
 	Closer
 	MapOfAnyReader
 }
 
-// MapOfAnyUnitReader defines an interface for reading a single item of map[interface{}]interface{} type.
-type MapOfAnyUnitReader interface {
-	ReadUnit() (map[interface{}]interface{}, error)
-}
-
-// MapOfAnyWriter defines an interface for writing a slice of map[interface{}]interface{} types.
+// MapOfAnyWriter defines an interface for writing a single map[interface{}]interface{} type.
 type MapOfAnyWriter interface {
-	Write([]map[interface{}]interface{}) (int, error)
+	Write(map[interface{}]interface{}) (int, error)
 }
 
-// MapOfAnyUnitWriter defines an interface for writing a single map[interface{}]interface{} type.
-type MapOfAnyUnitWriter interface {
-	WriteUnit(map[interface{}]interface{}) (int, error)
+// MapOfAnyLimitWriter defines an interface for writing a slice of map[interface{}]interface{} type.
+type MapOfAnyLimitWriter interface {
+	WriteLimit([]map[interface{}]interface{}) (int, error)
 }
 
-// MapOfAnyWriteCloser defines an interface for writing a slice of map[interface{}]interface{} types.
+// MapOfAnyWriteCloser defines an interface for writing a single map[interface{}]interface{} type.
 type MapOfAnyWriteCloser interface {
 	Closer
 	MapOfAnyWriter

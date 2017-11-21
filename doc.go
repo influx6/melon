@@ -3,8 +3,13 @@
 //
 // @templater(id => Model, gen => Partial.Go, file => _model.gml)
 //
+// @templaterTypesFor(id => Model, filename => conn_melon.go, Name => Conn, Type => net.Conn, asJSON, {
+//  {
+//    "imports": []string{"net"}
+//  }
+// })
 // @templaterTypesFor(id => Model, filename => int_melon.go, Name => Int, Type => int)
-// @templaterTypesFor(id => Model, filename => uint_melon.go, Name => UInt, Type => uint)
+// @templatertypesfor(id => model, filename => uint_melon.go, name => uint, type => uint)
 // @templaterTypesFor(id => Model, filename => bool_melon.go, Name => Bool, Type => bool)
 // @templaterTypesFor(id => Model, filename => byte_melon.go, Name => Byte, Type => byte)
 // @templaterTypesFor(id => Model, filename => int8_melon.go, Name => Int8, Type => int8)
