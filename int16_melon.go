@@ -7,12 +7,7 @@ const Int16UniqueHash = "3b1227b09fd0719b0d9a553739bfa14479fc0a09"
 
 // Int16Reader defines an interface for reading a single int16 type.
 type Int16Reader interface {
-	Read() (int16, error)
-}
-
-// Int16LimitReader defines an interface for reading a slice of int16 type.
-type Int16LimitReader interface {
-	ReadLimit(int) ([]int16, error)
+	ReadInt16() (int16, error)
 }
 
 // Int16ReadCloser defines an interface for reading a single int16 type.
@@ -21,18 +16,35 @@ type Int16ReadCloser interface {
 	Int16Reader
 }
 
-// Int16Writer defines an interface for writing a single int16 type.
-type Int16Writer interface {
-	Write(int16) (int, error)
+// Int16StreamReader defines an interface for reading a slice of int16 type.
+type Int16StreamReader interface {
+	Read(int) ([]int16, error)
 }
 
-// Int16LimitWriter defines an interface for writing a slice of int16 type.
-type Int16LimitWriter interface {
-	WriteLimit([]int16) (int, error)
+// Int16StreamReadCloser defines an interface for reading a single int16 type.
+type Int16StreamReadCloser interface {
+	Closer
+	Int16StreamReader
+}
+
+// Int16Writer defines an interface for writing a single int16 type.
+type Int16Writer interface {
+	WriteInt16(int16) (int, error)
 }
 
 // Int16WriteCloser defines an interface for writing a single int16 type.
 type Int16WriteCloser interface {
 	Closer
 	Int16Writer
+}
+
+// Int16StreamWriter defines an interface for writing a slice of int16 type.
+type Int16StreamWriter interface {
+	Write([]int16) (int, error)
+}
+
+// Int16StreamWriteCloser defines an interface for writing a single int16 type.
+type Int16StreamWriteCloser interface {
+	Closer
+	Int16StreamWriter
 }

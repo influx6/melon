@@ -9,12 +9,7 @@ const ConnUniqueHash = "e227c185e376f84717e05beb52bde64ab47d6838"
 
 // ConnReader defines an interface for reading a single net.Conn type.
 type ConnReader interface {
-	Read() (net.Conn, error)
-}
-
-// ConnLimitReader defines an interface for reading a slice of net.Conn type.
-type ConnLimitReader interface {
-	ReadLimit(int) ([]net.Conn, error)
+	ReadConn() (net.Conn, error)
 }
 
 // ConnReadCloser defines an interface for reading a single net.Conn type.
@@ -23,18 +18,35 @@ type ConnReadCloser interface {
 	ConnReader
 }
 
-// ConnWriter defines an interface for writing a single net.Conn type.
-type ConnWriter interface {
-	Write(net.Conn) (int, error)
+// ConnStreamReader defines an interface for reading a slice of net.Conn type.
+type ConnStreamReader interface {
+	Read(int) ([]net.Conn, error)
 }
 
-// ConnLimitWriter defines an interface for writing a slice of net.Conn type.
-type ConnLimitWriter interface {
-	WriteLimit([]net.Conn) (int, error)
+// ConnStreamReadCloser defines an interface for reading a single net.Conn type.
+type ConnStreamReadCloser interface {
+	Closer
+	ConnStreamReader
+}
+
+// ConnWriter defines an interface for writing a single net.Conn type.
+type ConnWriter interface {
+	WriteConn(net.Conn) (int, error)
 }
 
 // ConnWriteCloser defines an interface for writing a single net.Conn type.
 type ConnWriteCloser interface {
 	Closer
 	ConnWriter
+}
+
+// ConnStreamWriter defines an interface for writing a slice of net.Conn type.
+type ConnStreamWriter interface {
+	Write([]net.Conn) (int, error)
+}
+
+// ConnStreamWriteCloser defines an interface for writing a single net.Conn type.
+type ConnStreamWriteCloser interface {
+	Closer
+	ConnStreamWriter
 }

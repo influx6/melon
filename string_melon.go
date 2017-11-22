@@ -7,12 +7,7 @@ const StringUniqueHash = "62a027764a58e833c7beb34a33ccb1584d611d17"
 
 // StringReader defines an interface for reading a single string type.
 type StringReader interface {
-	Read() (string, error)
-}
-
-// StringLimitReader defines an interface for reading a slice of string type.
-type StringLimitReader interface {
-	ReadLimit(int) ([]string, error)
+	ReadString() (string, error)
 }
 
 // StringReadCloser defines an interface for reading a single string type.
@@ -21,18 +16,35 @@ type StringReadCloser interface {
 	StringReader
 }
 
-// StringWriter defines an interface for writing a single string type.
-type StringWriter interface {
-	Write(string) (int, error)
+// StringStreamReader defines an interface for reading a slice of string type.
+type StringStreamReader interface {
+	Read(int) ([]string, error)
 }
 
-// StringLimitWriter defines an interface for writing a slice of string type.
-type StringLimitWriter interface {
-	WriteLimit([]string) (int, error)
+// StringStreamReadCloser defines an interface for reading a single string type.
+type StringStreamReadCloser interface {
+	Closer
+	StringStreamReader
+}
+
+// StringWriter defines an interface for writing a single string type.
+type StringWriter interface {
+	WriteString(string) (int, error)
 }
 
 // StringWriteCloser defines an interface for writing a single string type.
 type StringWriteCloser interface {
 	Closer
 	StringWriter
+}
+
+// StringStreamWriter defines an interface for writing a slice of string type.
+type StringStreamWriter interface {
+	Write([]string) (int, error)
+}
+
+// StringStreamWriteCloser defines an interface for writing a single string type.
+type StringStreamWriteCloser interface {
+	Closer
+	StringStreamWriter
 }

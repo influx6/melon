@@ -7,12 +7,7 @@ const MapUniqueHash = "ba70ac0926874b71d829907f558c032da235489c"
 
 // MapReader defines an interface for reading a single map[string]interface{} type.
 type MapReader interface {
-	Read() (map[string]interface{}, error)
-}
-
-// MapLimitReader defines an interface for reading a slice of map[string]interface{} type.
-type MapLimitReader interface {
-	ReadLimit(int) ([]map[string]interface{}, error)
+	ReadMap() (map[string]interface{}, error)
 }
 
 // MapReadCloser defines an interface for reading a single map[string]interface{} type.
@@ -21,18 +16,35 @@ type MapReadCloser interface {
 	MapReader
 }
 
-// MapWriter defines an interface for writing a single map[string]interface{} type.
-type MapWriter interface {
-	Write(map[string]interface{}) (int, error)
+// MapStreamReader defines an interface for reading a slice of map[string]interface{} type.
+type MapStreamReader interface {
+	Read(int) ([]map[string]interface{}, error)
 }
 
-// MapLimitWriter defines an interface for writing a slice of map[string]interface{} type.
-type MapLimitWriter interface {
-	WriteLimit([]map[string]interface{}) (int, error)
+// MapStreamReadCloser defines an interface for reading a single map[string]interface{} type.
+type MapStreamReadCloser interface {
+	Closer
+	MapStreamReader
+}
+
+// MapWriter defines an interface for writing a single map[string]interface{} type.
+type MapWriter interface {
+	WriteMap(map[string]interface{}) (int, error)
 }
 
 // MapWriteCloser defines an interface for writing a single map[string]interface{} type.
 type MapWriteCloser interface {
 	Closer
 	MapWriter
+}
+
+// MapStreamWriter defines an interface for writing a slice of map[string]interface{} type.
+type MapStreamWriter interface {
+	Write([]map[string]interface{}) (int, error)
+}
+
+// MapStreamWriteCloser defines an interface for writing a single map[string]interface{} type.
+type MapStreamWriteCloser interface {
+	Closer
+	MapStreamWriter
 }

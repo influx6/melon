@@ -7,12 +7,7 @@ const UInt8UniqueHash = "e5de7d77d24ebbe134934f7c5f8dc3fafb344aba"
 
 // UInt8Reader defines an interface for reading a single uint8 type.
 type UInt8Reader interface {
-	Read() (uint8, error)
-}
-
-// UInt8LimitReader defines an interface for reading a slice of uint8 type.
-type UInt8LimitReader interface {
-	ReadLimit(int) ([]uint8, error)
+	ReadUInt8() (uint8, error)
 }
 
 // UInt8ReadCloser defines an interface for reading a single uint8 type.
@@ -21,18 +16,35 @@ type UInt8ReadCloser interface {
 	UInt8Reader
 }
 
-// UInt8Writer defines an interface for writing a single uint8 type.
-type UInt8Writer interface {
-	Write(uint8) (int, error)
+// UInt8StreamReader defines an interface for reading a slice of uint8 type.
+type UInt8StreamReader interface {
+	Read(int) ([]uint8, error)
 }
 
-// UInt8LimitWriter defines an interface for writing a slice of uint8 type.
-type UInt8LimitWriter interface {
-	WriteLimit([]uint8) (int, error)
+// UInt8StreamReadCloser defines an interface for reading a single uint8 type.
+type UInt8StreamReadCloser interface {
+	Closer
+	UInt8StreamReader
+}
+
+// UInt8Writer defines an interface for writing a single uint8 type.
+type UInt8Writer interface {
+	WriteUInt8(uint8) (int, error)
 }
 
 // UInt8WriteCloser defines an interface for writing a single uint8 type.
 type UInt8WriteCloser interface {
 	Closer
 	UInt8Writer
+}
+
+// UInt8StreamWriter defines an interface for writing a slice of uint8 type.
+type UInt8StreamWriter interface {
+	Write([]uint8) (int, error)
+}
+
+// UInt8StreamWriteCloser defines an interface for writing a single uint8 type.
+type UInt8StreamWriteCloser interface {
+	Closer
+	UInt8StreamWriter
 }

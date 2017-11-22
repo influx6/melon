@@ -7,12 +7,7 @@ const ErrorUniqueHash = "d3e8aa638ed54763fe05bd5404e80abdfc12b4f5"
 
 // ErrorReader defines an interface for reading a single error type.
 type ErrorReader interface {
-	Read() (error, error)
-}
-
-// ErrorLimitReader defines an interface for reading a slice of error type.
-type ErrorLimitReader interface {
-	ReadLimit(int) ([]error, error)
+	ReadError() (error, error)
 }
 
 // ErrorReadCloser defines an interface for reading a single error type.
@@ -21,18 +16,35 @@ type ErrorReadCloser interface {
 	ErrorReader
 }
 
-// ErrorWriter defines an interface for writing a single error type.
-type ErrorWriter interface {
-	Write(error) (int, error)
+// ErrorStreamReader defines an interface for reading a slice of error type.
+type ErrorStreamReader interface {
+	Read(int) ([]error, error)
 }
 
-// ErrorLimitWriter defines an interface for writing a slice of error type.
-type ErrorLimitWriter interface {
-	WriteLimit([]error) (int, error)
+// ErrorStreamReadCloser defines an interface for reading a single error type.
+type ErrorStreamReadCloser interface {
+	Closer
+	ErrorStreamReader
+}
+
+// ErrorWriter defines an interface for writing a single error type.
+type ErrorWriter interface {
+	WriteError(error) (int, error)
 }
 
 // ErrorWriteCloser defines an interface for writing a single error type.
 type ErrorWriteCloser interface {
 	Closer
 	ErrorWriter
+}
+
+// ErrorStreamWriter defines an interface for writing a slice of error type.
+type ErrorStreamWriter interface {
+	Write([]error) (int, error)
+}
+
+// ErrorStreamWriteCloser defines an interface for writing a single error type.
+type ErrorStreamWriteCloser interface {
+	Closer
+	ErrorStreamWriter
 }

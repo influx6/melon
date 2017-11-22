@@ -7,12 +7,7 @@ const MapOfAnyUniqueHash = "c2d03452b8860af6906e2c8a6e847f371db07988"
 
 // MapOfAnyReader defines an interface for reading a single map[interface{}]interface{} type.
 type MapOfAnyReader interface {
-	Read() (map[interface{}]interface{}, error)
-}
-
-// MapOfAnyLimitReader defines an interface for reading a slice of map[interface{}]interface{} type.
-type MapOfAnyLimitReader interface {
-	ReadLimit(int) ([]map[interface{}]interface{}, error)
+	ReadMapOfAny() (map[interface{}]interface{}, error)
 }
 
 // MapOfAnyReadCloser defines an interface for reading a single map[interface{}]interface{} type.
@@ -21,18 +16,35 @@ type MapOfAnyReadCloser interface {
 	MapOfAnyReader
 }
 
-// MapOfAnyWriter defines an interface for writing a single map[interface{}]interface{} type.
-type MapOfAnyWriter interface {
-	Write(map[interface{}]interface{}) (int, error)
+// MapOfAnyStreamReader defines an interface for reading a slice of map[interface{}]interface{} type.
+type MapOfAnyStreamReader interface {
+	Read(int) ([]map[interface{}]interface{}, error)
 }
 
-// MapOfAnyLimitWriter defines an interface for writing a slice of map[interface{}]interface{} type.
-type MapOfAnyLimitWriter interface {
-	WriteLimit([]map[interface{}]interface{}) (int, error)
+// MapOfAnyStreamReadCloser defines an interface for reading a single map[interface{}]interface{} type.
+type MapOfAnyStreamReadCloser interface {
+	Closer
+	MapOfAnyStreamReader
+}
+
+// MapOfAnyWriter defines an interface for writing a single map[interface{}]interface{} type.
+type MapOfAnyWriter interface {
+	WriteMapOfAny(map[interface{}]interface{}) (int, error)
 }
 
 // MapOfAnyWriteCloser defines an interface for writing a single map[interface{}]interface{} type.
 type MapOfAnyWriteCloser interface {
 	Closer
 	MapOfAnyWriter
+}
+
+// MapOfAnyStreamWriter defines an interface for writing a slice of map[interface{}]interface{} type.
+type MapOfAnyStreamWriter interface {
+	Write([]map[interface{}]interface{}) (int, error)
+}
+
+// MapOfAnyStreamWriteCloser defines an interface for writing a single map[interface{}]interface{} type.
+type MapOfAnyStreamWriteCloser interface {
+	Closer
+	MapOfAnyStreamWriter
 }

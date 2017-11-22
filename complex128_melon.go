@@ -7,12 +7,7 @@ const Complex128UniqueHash = "1e22bb114616c1ea2c888d34d5d519a35cc9103c"
 
 // Complex128Reader defines an interface for reading a single complex128 type.
 type Complex128Reader interface {
-	Read() (complex128, error)
-}
-
-// Complex128LimitReader defines an interface for reading a slice of complex128 type.
-type Complex128LimitReader interface {
-	ReadLimit(int) ([]complex128, error)
+	ReadComplex128() (complex128, error)
 }
 
 // Complex128ReadCloser defines an interface for reading a single complex128 type.
@@ -21,18 +16,35 @@ type Complex128ReadCloser interface {
 	Complex128Reader
 }
 
-// Complex128Writer defines an interface for writing a single complex128 type.
-type Complex128Writer interface {
-	Write(complex128) (int, error)
+// Complex128StreamReader defines an interface for reading a slice of complex128 type.
+type Complex128StreamReader interface {
+	Read(int) ([]complex128, error)
 }
 
-// Complex128LimitWriter defines an interface for writing a slice of complex128 type.
-type Complex128LimitWriter interface {
-	WriteLimit([]complex128) (int, error)
+// Complex128StreamReadCloser defines an interface for reading a single complex128 type.
+type Complex128StreamReadCloser interface {
+	Closer
+	Complex128StreamReader
+}
+
+// Complex128Writer defines an interface for writing a single complex128 type.
+type Complex128Writer interface {
+	WriteComplex128(complex128) (int, error)
 }
 
 // Complex128WriteCloser defines an interface for writing a single complex128 type.
 type Complex128WriteCloser interface {
 	Closer
 	Complex128Writer
+}
+
+// Complex128StreamWriter defines an interface for writing a slice of complex128 type.
+type Complex128StreamWriter interface {
+	Write([]complex128) (int, error)
+}
+
+// Complex128StreamWriteCloser defines an interface for writing a single complex128 type.
+type Complex128StreamWriteCloser interface {
+	Closer
+	Complex128StreamWriter
 }

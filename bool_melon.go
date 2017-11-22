@@ -7,12 +7,7 @@ const BoolUniqueHash = "189fa523325f8a701fd00ad1b0cd386b4b629299"
 
 // BoolReader defines an interface for reading a single bool type.
 type BoolReader interface {
-	Read() (bool, error)
-}
-
-// BoolLimitReader defines an interface for reading a slice of bool type.
-type BoolLimitReader interface {
-	ReadLimit(int) ([]bool, error)
+	ReadBool() (bool, error)
 }
 
 // BoolReadCloser defines an interface for reading a single bool type.
@@ -21,18 +16,35 @@ type BoolReadCloser interface {
 	BoolReader
 }
 
-// BoolWriter defines an interface for writing a single bool type.
-type BoolWriter interface {
-	Write(bool) (int, error)
+// BoolStreamReader defines an interface for reading a slice of bool type.
+type BoolStreamReader interface {
+	Read(int) ([]bool, error)
 }
 
-// BoolLimitWriter defines an interface for writing a slice of bool type.
-type BoolLimitWriter interface {
-	WriteLimit([]bool) (int, error)
+// BoolStreamReadCloser defines an interface for reading a single bool type.
+type BoolStreamReadCloser interface {
+	Closer
+	BoolStreamReader
+}
+
+// BoolWriter defines an interface for writing a single bool type.
+type BoolWriter interface {
+	WriteBool(bool) (int, error)
 }
 
 // BoolWriteCloser defines an interface for writing a single bool type.
 type BoolWriteCloser interface {
 	Closer
 	BoolWriter
+}
+
+// BoolStreamWriter defines an interface for writing a slice of bool type.
+type BoolStreamWriter interface {
+	Write([]bool) (int, error)
+}
+
+// BoolStreamWriteCloser defines an interface for writing a single bool type.
+type BoolStreamWriteCloser interface {
+	Closer
+	BoolStreamWriter
 }

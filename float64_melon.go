@@ -7,12 +7,7 @@ const Float64UniqueHash = "c11c63ba6f4639c386f2b6ed2ec7dec76ff35a5d"
 
 // Float64Reader defines an interface for reading a single float64 type.
 type Float64Reader interface {
-	Read() (float64, error)
-}
-
-// Float64LimitReader defines an interface for reading a slice of float64 type.
-type Float64LimitReader interface {
-	ReadLimit(int) ([]float64, error)
+	ReadFloat64() (float64, error)
 }
 
 // Float64ReadCloser defines an interface for reading a single float64 type.
@@ -21,18 +16,35 @@ type Float64ReadCloser interface {
 	Float64Reader
 }
 
-// Float64Writer defines an interface for writing a single float64 type.
-type Float64Writer interface {
-	Write(float64) (int, error)
+// Float64StreamReader defines an interface for reading a slice of float64 type.
+type Float64StreamReader interface {
+	Read(int) ([]float64, error)
 }
 
-// Float64LimitWriter defines an interface for writing a slice of float64 type.
-type Float64LimitWriter interface {
-	WriteLimit([]float64) (int, error)
+// Float64StreamReadCloser defines an interface for reading a single float64 type.
+type Float64StreamReadCloser interface {
+	Closer
+	Float64StreamReader
+}
+
+// Float64Writer defines an interface for writing a single float64 type.
+type Float64Writer interface {
+	WriteFloat64(float64) (int, error)
 }
 
 // Float64WriteCloser defines an interface for writing a single float64 type.
 type Float64WriteCloser interface {
 	Closer
 	Float64Writer
+}
+
+// Float64StreamWriter defines an interface for writing a slice of float64 type.
+type Float64StreamWriter interface {
+	Write([]float64) (int, error)
+}
+
+// Float64StreamWriteCloser defines an interface for writing a single float64 type.
+type Float64StreamWriteCloser interface {
+	Closer
+	Float64StreamWriter
 }
