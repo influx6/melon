@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // Int32UniqueHash defines a unique hash for Int32 which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const Int32UniqueHash = "f90a5efe8610965bee01abba15d0e1f54046e2e8"
+
+// Int32Handler defines a function type receiving both reader and writer types.
+type Int32Handler func(Int32Reader, Int32Writer) error
+
+// Int32HandlerWithCtx defines a function type receiving both reader and writer types.
+type Int32HandlerWithCtx func(context.Context, Int32Reader, Int32Writer) error
+
+// Int32Stream defines a function type receiving both reader and writer types.
+type Int32Stream func(Int32StreamReader, Int32StreamWriter) error
+
+// Int32StreamWithCtx defines a function type receiving both reader and writer types.
+type Int32StreamWithCtx func(context.Context, Int32StreamReader, Int32StreamWriter) error
 
 // Int32Reader defines an interface for reading a single int32 type.
 type Int32Reader interface {

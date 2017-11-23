@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // MapOfStringUniqueHash defines a unique hash for MapOfString which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const MapOfStringUniqueHash = "de4cf6eba7a008b25c4561bf3c1885a2c02fc96f"
+
+// MapOfStringHandler defines a function type receiving both reader and writer types.
+type MapOfStringHandler func(MapOfStringReader, MapOfStringWriter) error
+
+// MapOfStringHandlerWithCtx defines a function type receiving both reader and writer types.
+type MapOfStringHandlerWithCtx func(context.Context, MapOfStringReader, MapOfStringWriter) error
+
+// MapOfStringStream defines a function type receiving both reader and writer types.
+type MapOfStringStream func(MapOfStringStreamReader, MapOfStringStreamWriter) error
+
+// MapOfStringStreamWithCtx defines a function type receiving both reader and writer types.
+type MapOfStringStreamWithCtx func(context.Context, MapOfStringStreamReader, MapOfStringStreamWriter) error
 
 // MapOfStringReader defines an interface for reading a single map[string]string type.
 type MapOfStringReader interface {

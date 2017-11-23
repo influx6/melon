@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // Int64UniqueHash defines a unique hash for Int64 which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const Int64UniqueHash = "d9735f419182b6c737eba2e4b2d3f05a5b349bc9"
+
+// Int64Handler defines a function type receiving both reader and writer types.
+type Int64Handler func(Int64Reader, Int64Writer) error
+
+// Int64HandlerWithCtx defines a function type receiving both reader and writer types.
+type Int64HandlerWithCtx func(context.Context, Int64Reader, Int64Writer) error
+
+// Int64Stream defines a function type receiving both reader and writer types.
+type Int64Stream func(Int64StreamReader, Int64StreamWriter) error
+
+// Int64StreamWithCtx defines a function type receiving both reader and writer types.
+type Int64StreamWithCtx func(context.Context, Int64StreamReader, Int64StreamWriter) error
 
 // Int64Reader defines an interface for reading a single int64 type.
 type Int64Reader interface {

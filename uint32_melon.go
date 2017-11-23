@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // UInt32UniqueHash defines a unique hash for UInt32 which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const UInt32UniqueHash = "a334cf504c1433f88e8aaab77d2225c3f7843634"
+
+// UInt32Handler defines a function type receiving both reader and writer types.
+type UInt32Handler func(UInt32Reader, UInt32Writer) error
+
+// UInt32HandlerWithCtx defines a function type receiving both reader and writer types.
+type UInt32HandlerWithCtx func(context.Context, UInt32Reader, UInt32Writer) error
+
+// UInt32Stream defines a function type receiving both reader and writer types.
+type UInt32Stream func(UInt32StreamReader, UInt32StreamWriter) error
+
+// UInt32StreamWithCtx defines a function type receiving both reader and writer types.
+type UInt32StreamWithCtx func(context.Context, UInt32StreamReader, UInt32StreamWriter) error
 
 // UInt32Reader defines an interface for reading a single uint32 type.
 type UInt32Reader interface {

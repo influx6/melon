@@ -1,11 +1,27 @@
 package melon
 
-import "net"
+import (
+	"net"
+
+	"github.com/influx6/faux/context"
+)
 
 // ConnUniqueHash defines a unique hash for Conn which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const ConnUniqueHash = "e227c185e376f84717e05beb52bde64ab47d6838"
+
+// ConnHandler defines a function type receiving both reader and writer types.
+type ConnHandler func(ConnReader, ConnWriter) error
+
+// ConnHandlerWithCtx defines a function type receiving both reader and writer types.
+type ConnHandlerWithCtx func(context.Context, ConnReader, ConnWriter) error
+
+// ConnStream defines a function type receiving both reader and writer types.
+type ConnStream func(ConnStreamReader, ConnStreamWriter) error
+
+// ConnStreamWithCtx defines a function type receiving both reader and writer types.
+type ConnStreamWithCtx func(context.Context, ConnStreamReader, ConnStreamWriter) error
 
 // ConnReader defines an interface for reading a single net.Conn type.
 type ConnReader interface {

@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // BoolUniqueHash defines a unique hash for Bool which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const BoolUniqueHash = "189fa523325f8a701fd00ad1b0cd386b4b629299"
+
+// BoolHandler defines a function type receiving both reader and writer types.
+type BoolHandler func(BoolReader, BoolWriter) error
+
+// BoolHandlerWithCtx defines a function type receiving both reader and writer types.
+type BoolHandlerWithCtx func(context.Context, BoolReader, BoolWriter) error
+
+// BoolStream defines a function type receiving both reader and writer types.
+type BoolStream func(BoolStreamReader, BoolStreamWriter) error
+
+// BoolStreamWithCtx defines a function type receiving both reader and writer types.
+type BoolStreamWithCtx func(context.Context, BoolStreamReader, BoolStreamWriter) error
 
 // BoolReader defines an interface for reading a single bool type.
 type BoolReader interface {

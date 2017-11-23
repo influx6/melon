@@ -1,9 +1,25 @@
 package melon
 
+import (
+	"github.com/influx6/faux/context"
+)
+
 // ByteUniqueHash defines a unique hash for Byte which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const ByteUniqueHash = "9f2e300d92751ef08344907e4adc0481d7f9ae93"
+
+// ByteHandler defines a function type receiving both reader and writer types.
+type ByteHandler func(ByteReader, ByteWriter) error
+
+// ByteHandlerWithCtx defines a function type receiving both reader and writer types.
+type ByteHandlerWithCtx func(context.Context, ByteReader, ByteWriter) error
+
+// ByteStream defines a function type receiving both reader and writer types.
+type ByteStream func(ByteStreamReader, ByteStreamWriter) error
+
+// ByteStreamWithCtx defines a function type receiving both reader and writer types.
+type ByteStreamWithCtx func(context.Context, ByteStreamReader, ByteStreamWriter) error
 
 // ByteReader defines an interface for reading a single byte type.
 type ByteReader interface {
