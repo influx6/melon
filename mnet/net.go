@@ -7,9 +7,19 @@ import (
 	"errors"
 	"net"
 	"sync"
+	"time"
 
 	"github.com/influx6/faux/netutils"
 	"github.com/influx6/melon"
+)
+
+const (
+	// TLSHandshakeTTL defines time to set Read deadline for TLsHandshake.
+	TLSHandshakeTTL = 3 * time.Second
+
+	// MaxTLSHandshakeTTLWait defines time to wait before we end connection because
+	// tls handshake failed to happen in expected time.
+	MaxTLSHandshakeTTLWait = 5 * time.Second
 )
 
 // errors ...
@@ -29,14 +39,16 @@ func Listen(protocol string, addr string, config *tls.Config) (melon.ConnReadWri
 	}
 
 	readWriter := new(connReadWriter)
+	readWriter.tls = config
 	readWriter.l = lt
 
 	return readWriter, nil
 }
 
 type connReadWriter struct {
-	ml sync.Mutex
-	l  net.Listener
+	ml  sync.Mutex
+	l   net.Listener
+	tls *tls.Config
 }
 
 // WriteConn receives the provided net.Conn and closes the connection, this
@@ -74,5 +86,35 @@ func (cs *connReadWriter) ReadConn() (net.Conn, error) {
 		return nil, err
 	}
 
-	return newConn, nil
+	// if we are not using tls then continue.
+	if cs.tls == nil {
+		return newConn, nil
+	}
+
+	tlsConn, ok := newConn.(*tls.Conn)
+	if !ok {
+		tlsConn = tls.Server(newConn, cs.tls)
+	}
+
+	var tlsHandshaked bool
+
+	// If we pass over this time and we have not being sorted then kill connection.
+	time.AfterFunc(MaxTLSHandshakeTTLWait, func() {
+		if !tlsHandshaked {
+			tlsConn.SetReadDeadline(time.Time{})
+			tlsConn.Close()
+		}
+	})
+
+	tlsConn.SetReadDeadline(time.Now().Add(TLSHandshakeTTL))
+	if err := tlsConn.Handshake(); err != nil {
+		tlsHandshaked = true
+		tlsConn.Close()
+		return nil, err
+	}
+
+	tlsHandshaked = true
+	tlsConn.SetReadDeadline(time.Time{})
+
+	return tlsConn, nil
 }
