@@ -10,14 +10,13 @@ import (
 )
 
 func TestReadWriter(t *testing.T) {
-	reader, writer, err := mnet.ReadWriter("tcp", ":4050", nil)
+	reader, err := mnet.Listen("tcp", ":4050", nil)
 	if err != nil {
 		tests.FailedWithError(err, "Should have successfully created reader and writer")
 	}
 	tests.Passed("Should have successfully created reader and writer")
 
 	defer reader.Close()
-	defer writer.Close()
 
 	go makeConn(":4050")
 	conn, err := reader.ReadConn()
@@ -26,7 +25,7 @@ func TestReadWriter(t *testing.T) {
 	}
 	tests.Passed("Should have sucessfully read connection")
 
-	writer.WriteConn(conn)
+	reader.WriteConn(conn)
 }
 
 func makeConn(addr string) {

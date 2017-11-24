@@ -17,11 +17,11 @@ var (
 	ErrListenerClosed = errors.New("listener has being closed")
 )
 
-// ReadWriter returns a Readr and Writer for reading net.Conns from a underline net.Listener.
-func ReadWriter(protocol string, addr string, config *tls.Config) (melon.ConnReadCloser, melon.ConnWriteCloser, error) {
+// Listen returns a Readr and Writer for reading net.Conns from a underline net.Listener.
+func Listen(protocol string, addr string, config *tls.Config) (melon.ConnReadWriteCloser, error) {
 	lt, err := netutils.MakeListener(protocol, addr, config)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	if tlt, ok := lt.(*net.TCPListener); ok {
@@ -31,7 +31,7 @@ func ReadWriter(protocol string, addr string, config *tls.Config) (melon.ConnRea
 	readWriter := new(connReadWriter)
 	readWriter.l = lt
 
-	return readWriter, readWriter, nil
+	return readWriter, nil
 }
 
 type connReadWriter struct {
@@ -42,8 +42,8 @@ type connReadWriter struct {
 // WriteConn receives the provided net.Conn and closes the connection, this
 // assumes all operation with the net.Conn has being complete and the resource
 // and connection should end here.
-func (cs *connReadWriter) WriteConn(conn net.Conn) (int, error) {
-	return 1, conn.Close()
+func (cs *connReadWriter) WriteConn(conn net.Conn) error {
+	return conn.Close()
 }
 
 // Close closes the underneath net.Listener, ending all

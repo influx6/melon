@@ -1,66 +1,65 @@
 package melon
 
-import (
-	"github.com/influx6/faux/context"
-)
-
 // ErrorUniqueHash defines a unique hash for Error which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const ErrorUniqueHash = "d3e8aa638ed54763fe05bd5404e80abdfc12b4f5"
 
-// ErrorHandler defines a function type receiving both reader and writer types.
-type ErrorHandler func(ErrorReader, ErrorWriter) error
-
-// ErrorHandlerWithCtx defines a function type receiving both reader and writer types.
-type ErrorHandlerWithCtx func(context.Context, ErrorReader, ErrorWriter) error
-
-// ErrorStream defines a function type receiving both reader and writer types.
-type ErrorStream func(ErrorStreamReader, ErrorStreamWriter) error
-
-// ErrorStreamWithCtx defines a function type receiving both reader and writer types.
-type ErrorStreamWithCtx func(context.Context, ErrorStreamReader, ErrorStreamWriter) error
-
-// ErrorReader defines an interface for reading a single error type.
+// ErrorReader defines reader for error type.
 type ErrorReader interface {
 	ReadError() (error, error)
 }
 
-// ErrorReadCloser defines an interface for reading a single error type.
+// ErrorReadCloser defines reader and closer for error type.
 type ErrorReadCloser interface {
 	Closer
 	ErrorReader
 }
 
-// ErrorStreamReader defines an interface for reading a slice of error type.
+// ErrorStreamReader defines reader error type.
 type ErrorStreamReader interface {
 	Read(int) ([]error, error)
 }
 
-// ErrorStreamReadCloser defines an interface for reading a single error type.
+// ErrorStreamReadCloser defines reader and closer for error type.
 type ErrorStreamReadCloser interface {
 	Closer
 	ErrorStreamReader
 }
 
-// ErrorWriter defines an interface for writing a single error type.
+// ErrorWriter defines writer for error type.
 type ErrorWriter interface {
-	WriteError(error) (int, error)
+	WriteError(error) error
 }
 
-// ErrorWriteCloser defines an interface for writing a single error type.
+// ErrorWriteCloser defines writer and closer for error type.
 type ErrorWriteCloser interface {
 	Closer
 	ErrorWriter
 }
 
-// ErrorStreamWriter defines an interface for writing a slice of error type.
+// ErrorStreamWrite defines writer for error type.
 type ErrorStreamWriter interface {
 	Write([]error) (int, error)
 }
 
-// ErrorStreamWriteCloser defines an interface for writing a single error type.
+// ErrorStreamWriteCloser defines writer and closer for error type.
 type ErrorStreamWriteCloser interface {
 	Closer
+	ErrorStreamWriter
+}
+
+// ErrorReadWriteCloser composes reader types with closer for error.
+// with associated close method.
+type ErrorReadWriteCloser interface {
+	Closer
+	ErrorReader
+	ErrorWriter
+}
+
+// ErrorStreamReadWriteCloser composes stream types with closer for error.
+type ErrorStream interface {
+	Closer
+	ErrorStreamReader
 	ErrorStreamWriter
 }

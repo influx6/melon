@@ -1,66 +1,65 @@
 package melon
 
-import (
-	"github.com/influx6/faux/context"
-)
-
 // ByteUniqueHash defines a unique hash for Byte which can
 // be used to reference a given instance within a context.ValueBag or a google context.Context
 // value store.
 const ByteUniqueHash = "9f2e300d92751ef08344907e4adc0481d7f9ae93"
 
-// ByteHandler defines a function type receiving both reader and writer types.
-type ByteHandler func(ByteReader, ByteWriter) error
-
-// ByteHandlerWithCtx defines a function type receiving both reader and writer types.
-type ByteHandlerWithCtx func(context.Context, ByteReader, ByteWriter) error
-
-// ByteStream defines a function type receiving both reader and writer types.
-type ByteStream func(ByteStreamReader, ByteStreamWriter) error
-
-// ByteStreamWithCtx defines a function type receiving both reader and writer types.
-type ByteStreamWithCtx func(context.Context, ByteStreamReader, ByteStreamWriter) error
-
-// ByteReader defines an interface for reading a single byte type.
+// ByteReader defines reader for byte type.
 type ByteReader interface {
 	ReadByte() (byte, error)
 }
 
-// ByteReadCloser defines an interface for reading a single byte type.
+// ByteReadCloser defines reader and closer for byte type.
 type ByteReadCloser interface {
 	Closer
 	ByteReader
 }
 
-// ByteStreamReader defines an interface for reading a slice of byte type.
+// ByteStreamReader defines reader byte type.
 type ByteStreamReader interface {
 	Read(int) ([]byte, error)
 }
 
-// ByteStreamReadCloser defines an interface for reading a single byte type.
+// ByteStreamReadCloser defines reader and closer for byte type.
 type ByteStreamReadCloser interface {
 	Closer
 	ByteStreamReader
 }
 
-// ByteWriter defines an interface for writing a single byte type.
+// ByteWriter defines writer for byte type.
 type ByteWriter interface {
-	WriteByte(byte) (int, error)
+	WriteByte(byte) error
 }
 
-// ByteWriteCloser defines an interface for writing a single byte type.
+// ByteWriteCloser defines writer and closer for byte type.
 type ByteWriteCloser interface {
 	Closer
 	ByteWriter
 }
 
-// ByteStreamWriter defines an interface for writing a slice of byte type.
+// ByteStreamWrite defines writer for byte type.
 type ByteStreamWriter interface {
 	Write([]byte) (int, error)
 }
 
-// ByteStreamWriteCloser defines an interface for writing a single byte type.
+// ByteStreamWriteCloser defines writer and closer for byte type.
 type ByteStreamWriteCloser interface {
 	Closer
+	ByteStreamWriter
+}
+
+// ByteReadWriteCloser composes reader types with closer for byte.
+// with associated close method.
+type ByteReadWriteCloser interface {
+	Closer
+	ByteReader
+	ByteWriter
+}
+
+// ByteStreamReadWriteCloser composes stream types with closer for byte.
+type ByteStream interface {
+	Closer
+	ByteStreamReader
 	ByteStreamWriter
 }
