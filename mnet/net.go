@@ -15,11 +15,11 @@ import (
 
 const (
 	// TLSHandshakeTTL defines time to set Read deadline for TLsHandshake.
-	TLSHandshakeTTL = 3 * time.Second
+	TLSHandshakeTTL = 700 * time.Millisecond
 
 	// MaxTLSHandshakeTTLWait defines time to wait before we end connection because
 	// tls handshake failed to happen in expected time.
-	MaxTLSHandshakeTTLWait = 5 * time.Second
+	MaxTLSHandshakeTTLWait = 1 * time.Second
 )
 
 // errors ...
