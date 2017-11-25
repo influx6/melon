@@ -19,7 +19,7 @@ const (
 
 	// MaxTLSHandshakeTTLWait defines time to wait before we end connection because
 	// tls handshake failed to happen in expected time.
-	MaxTLSHandshakeTTLWait = 1 * time.Second
+	MaxTLSHandshakeTTLWait = 2 * time.Second
 )
 
 // errors ...
