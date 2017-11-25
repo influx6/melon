@@ -61,27 +61,32 @@ func (cs *connReadWriter) WriteConn(conn net.Conn) error {
 // Close closes the underneath net.Listener, ending all
 func (cs *connReadWriter) Close() error {
 	cs.ml.Lock()
-	defer cs.ml.Unlock()
-
 	if cs.l == nil {
+		cs.ml.Unlock()
 		return ErrListenerClosed
 	}
+	listener := cs.l
+	cs.ml.Unlock()
 
-	err := cs.l.Close()
+	err := listener.Close()
+	cs.ml.Lock()
 	cs.l = nil
+	cs.ml.Unlock()
+
 	return err
 }
 
 // ReadConn returns a new net.Conn from the underying listener.
 func (cs *connReadWriter) ReadConn() (net.Conn, error) {
 	cs.ml.Lock()
-	defer cs.ml.Unlock()
-
 	if cs.l == nil {
 		return nil, ErrListenerClosed
 	}
 
-	newConn, err := cs.l.Accept()
+	listener := cs.l
+	cs.ml.Unlock()
+
+	newConn, err := listener.Accept()
 	if err != nil {
 		return nil, err
 	}

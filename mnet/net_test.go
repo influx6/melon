@@ -54,7 +54,10 @@ func TestListen(t *testing.T) {
 	}
 	tests.Passed("Should have sucessfully written connection")
 
-	reader.Close()
+	if cerr := reader.Close(); cerr != nil {
+		tests.ErroredWithError(err, "Should have sucessfully closed reader")
+	}
+
 	_, err = reader.ReadConn()
 	if err == nil {
 		tests.FailedWithError(err, "Should have sucessfully failed to read connection")
@@ -94,8 +97,6 @@ func TestListenWithTLS(t *testing.T) {
 	}
 	tests.Passed("Should have successfully created reader and writer")
 
-	defer reader.Close()
-
 	go makeTLSConn(":4050", &config)
 	conn, err := reader.ReadConn()
 	if err != nil {
@@ -107,6 +108,10 @@ func TestListenWithTLS(t *testing.T) {
 		tests.FailedWithError(err, "Should have sucessfully written connection")
 	}
 	tests.Passed("Should have sucessfully written connection")
+
+	if cerr := reader.Close(); cerr != nil {
+		tests.ErroredWithError(err, "Should have sucessfully closed reader")
+	}
 }
 
 func makeTLSConn(addr string, config *tls.Config) {
